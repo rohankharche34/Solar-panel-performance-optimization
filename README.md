@@ -38,7 +38,6 @@ A **stacked ensemble model** was developed with the following structure:
 
 - ✅ **Validation RMSE**: **0.10610**
 - ✅ **Mean CV RMSE**: **0.10213**
-- ✅ **Custom Score (on validation set)**: **89.38951**
 - ✅ **OOF and CV-based stacking strategy used for generalization**
 - ✅ Submission generated using predictions on test set
 
