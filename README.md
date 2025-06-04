@@ -54,13 +54,19 @@ A **stacked ensemble model** was developed with the following structure:
 
 ## 📦 Installation & Usage
 
-### 🔗 Clone the repository
+### 1. Clone the repository
 ```bash
 git clone https://github.com/rohankharche34/Solar-panel-performance-optimization.git
 cd Solar-panel-performance-optimization
 ```
 
-### 💾 Install dependencies
+### 2. Create and activate a virtual environment (optional but recommended)
+```bash
+python -m venv venv
+source venv/bin/activate  # on Windows use `venv\Scripts\activate`
+```
+
+### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
