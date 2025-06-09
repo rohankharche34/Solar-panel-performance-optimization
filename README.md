@@ -57,10 +57,7 @@ As solar energy systems scale up globally, **predicting performance degradation 
 2. **Stacking**:
    - OOF (Out-of-Fold) predictions generated for training meta-model
    - Final meta-model: `Ridge Regression`
-3. **Hyperparameter Tuning**:
-    - GridSearchCV for each base model.
-    - Hyperparameter tuning for each model using GridSearchCV.
-
+  
 ---
 
 ## 📊 Results
