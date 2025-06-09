@@ -14,23 +14,52 @@ As solar energy systems scale up globally, **predicting performance degradation 
 - **Target Variable**: `efficiency`  
 - **Index**: `id`
 
+---
+
 ### 🧪 Features Used
 - **Numerical**: `temperature`, `irradiance`, `humidity`, `panel_age`, `maintenance_count`, `soiling_ratio`, `voltage`, `current`, `module_temperature`, `cloud_coverage`, `wind_speed`, `pressure`
 - **Categorical**: `string_id`, `error_code`, `installation_type`
 
 ---
 
-## 🧠 Models Used
+## 🧰 Tools and Libraries Used
 
-A **stacked ensemble model** was developed with the following structure:
+- **Data Preprocessing**: `pandas`, `numpy`, `seaborn`, `matplotlib`, `scikit-learn`
+- **Machine Learning Models**:
+  - `RandomForestRegressor`
+  - `LightGBMRegressor`
+  - `CatBoostRegressor`
+  - `ANN` using `TensorFlow` and `SciKeras`
+- **Model Tuning**: `GridSearchCV`
+- **Ensemble**: Manual stacking with `Ridge Regression` as meta-model
 
-### 🔁 Base Models
-- **Random Forest Regressor** (tuned with GridSearchCV)
-- **LightGBM Regressor** (tuned with GridSearchCV)
-- **CatBoost Regressor** (tuned with GridSearchCV + early stopping)
+---
 
-### 🧠 Meta Model
-- **Ridge Regressor**, trained on out-of-fold (OOF) predictions from base models
+## 🛠️ Feature Engineering
+
+- Missing value imputation:
+  - Mean imputation for continuous variables.
+  - Mode imputation for categorical variables like `maintenance_count`.
+- Label encoding for categorical features.
+- Added engineered feature: `power_output = voltage * current`.
+- Log transformation for `voltage` to reduce skew.
+- Scaled numerical features with `RobustScaler`.
+
+---
+
+## 🤖 Modeling Pipeline
+
+1. **Base Models**:
+   - Random Forest
+   - LightGBM
+   - CatBoost
+   - ANN using TensorFlow (via KerasRegressor)
+2. **Stacking**:
+   - OOF (Out-of-Fold) predictions generated for training meta-model
+   - Final meta-model: `Ridge Regression`
+3. **Hyperparameter Tuning**:
+    - GridSearchCV for each base model.
+    - Hyperparameter tuning for each model using GridSearchCV.
 
 ---
 
@@ -69,6 +98,7 @@ source venv/bin/activate  # on Windows use `venv\Scripts\activate`
 ```bash
 pip install -r requirements.txt
 ```
+---
 
 ## 🛠 Tech Stack
 Python 3.10
@@ -80,5 +110,9 @@ XGBoost 2.0.3
 LightGBM 4.3.0
 
 CatBoost 1.2.3
+
+Tensorflow==2.16.1
+
+Scikeras==0.12.0
 
 Pandas, NumPy, Matplotlib, Seaborn
